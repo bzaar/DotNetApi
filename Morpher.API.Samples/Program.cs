@@ -5,10 +5,13 @@ using Morpher.Generic;
 
 namespace Morpher.API.Samples
 {
+    using System.Text;
+
     class Program
     {
         static void Main()
         {
+            Console.OutputEncoding = Encoding.UTF8;
             Console.WriteLine (Factory.Russian.Declension.Parse("генеральный директор").Dative);
 
             // Склоняем на разных языках одной и той же функцией:
@@ -31,6 +34,8 @@ namespace Morpher.API.Samples
                                            };
 
             СуммаПрописью.СуммаПрописьюНаРазныхЯзыках (Factory.Russian.NumberSpelling.AsGeneric(), рубли, Russian.Case.Prepositional);
+
+            Console.ReadLine();
         }
 
 

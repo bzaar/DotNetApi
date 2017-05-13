@@ -1,45 +1,61 @@
 ﻿namespace Morpher
 {
-    public abstract class Gender 
+    public abstract class Gender
     {
-        public abstract T Get <T> (IGenderParadigm<T> p);
+        public abstract T Get<T>(IGenderParadigm<T> p);
 
-        class _Masculine : Gender
+        public class _Masculine : Gender
         {
-            public override T Get <T> (IGenderParadigm<T> p)
+            internal _Masculine()
+            {
+            }
+
+            public override T Get<T>(IGenderParadigm<T> p)
             {
                 return p.Masculine;
             }
         }
 
-        class _Feminine : Gender
+        public class _Feminine : Gender
         {
-            public override T Get <T> (IGenderParadigm<T> p)
+            internal _Feminine()
+            {
+            }
+
+            public override T Get<T>(IGenderParadigm<T> p)
             {
                 return p.Feminine;
             }
         }
 
-        class _Neuter : Gender
+        public class _Neuter : Gender
         {
-            public override T Get <T> (IGenderParadigm<T> p)
+            internal _Neuter()
+            {
+            }
+
+            public override T Get<T>(IGenderParadigm<T> p)
             {
                 return p.Neuter;
             }
         }
 
-        class _Plural : Gender
+        public class _Plural : Gender
         {
-            public override T Get <T> (IGenderParadigm<T> p)
+            internal _Plural()
+            {
+            }
+
+            public override T Get<T>(IGenderParadigm<T> p)
             {
                 return p.Plural;
             }
         }
 
-        public static Gender Masculine = new _Masculine ();
-        public static Gender Feminine  = new _Feminine ();
-        public static Gender Neuter    = new _Neuter ();
-        public static Gender Plural    = new _Plural ();
+        public static Gender Masculine = new _Masculine();
+        public static Gender Feminine = new _Feminine();
+        public static Gender Neuter = new _Neuter();
+        public static Gender Plural = new _Plural();
     }
 }
 

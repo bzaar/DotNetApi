@@ -76,6 +76,10 @@
       <Project>{CD26D20A-D6AE-42E7-AC4B-29B0833ED2D4}</Project>
       <Name>Morpher.API</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Morpher.WebService.V3\Morpher.WebService.V3.csproj">
+      <Project>{c2fb5a79-c93e-4eb5-9781-21dd016cd9d0}</Project>
+      <Name>Morpher.WebService.V3</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
