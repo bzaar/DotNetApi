@@ -5,32 +5,39 @@ using Morpher.Generic;
 
 namespace Morpher.API.Samples
 {
+    using System.Text;
+
     class Program
     {
         static void Main()
         {
+            Console.OutputEncoding = Encoding.UTF8;
             Console.WriteLine (Factory.Russian.Declension.Parse("генеральный директор").Dative);
 
             // Склоняем на разных языках одной и той же функцией:
             PrintAll (GetAllCases (Factory.Russian.Declension.AsGeneric(), "кот"));
-            PrintAll (GetAllCases (Factory.Ukrainian.Declension.AsGeneric(), "кіт"));
+            PrintAll(GetAllCases(Factory.Ukrainian.Declension.AsGeneric(), "кіт"));
 
-            GetAllCases (Factory.Russian.NumberSpelling.AsGeneric(), 38, "попугай");
-            GetAllCases (Factory.Ukrainian.NumberSpelling.AsGeneric(), 38, "попугай");
+            GetAllCases(Factory.Russian.NumberSpelling.AsGeneric(), 38, "рубль");
+            GetAllCases(Factory.Ukrainian.NumberSpelling.AsGeneric(), 38, "рубль");
 
             var uk = Factory.Ukrainian.NumberSpelling.AsGeneric();
-            var рубли = new ДенежнаяЕдиница {
-                                               ПолноеНаименованиеЦелойЧасти = "рубль",
-                                               ПолноеНаименованиеДробнойЧасти = "копейка",
-                                               СокращенноеНаименованиеЦелойЧасти = "руб."
-                                            };
-            var евро = new ДенежнаяЕдиница {
-                                               ПолноеНаименованиеЦелойЧасти = "евро",
-                                               ПолноеНаименованиеДробнойЧасти = "цент",
-                                               СокращенноеНаименованиеЦелойЧасти = "евро"
-                                           };
+            var рубли = new ДенежнаяЕдиница
+            {
+                ПолноеНаименованиеЦелойЧасти = "рубль",
+                ПолноеНаименованиеДробнойЧасти = "копейка",
+                СокращенноеНаименованиеЦелойЧасти = "руб."
+            };
+            var евро = new ДенежнаяЕдиница
+            {
+                ПолноеНаименованиеЦелойЧасти = "евро",
+                ПолноеНаименованиеДробнойЧасти = "цент",
+                СокращенноеНаименованиеЦелойЧасти = "евро"
+            };
 
-            СуммаПрописью.СуммаПрописьюНаРазныхЯзыках (Factory.Russian.NumberSpelling.AsGeneric(), рубли, Russian.Case.Prepositional);
+            СуммаПрописью.СуммаПрописьюНаРазныхЯзыках(Factory.Russian.NumberSpelling.AsGeneric(), рубли, Russian.Case.Prepositional);
+
+            Console.ReadLine();
         }
 
 
