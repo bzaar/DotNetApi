@@ -2,35 +2,33 @@
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
+    using System.Runtime.Serialization;
 
     using Morpher.Russian;
-    using Morpher.WebService.V3.Models.Interfaces;
 
-    using Newtonsoft.Json;
-
-    public class RussianDeclensionForms : IRussianParadigm, IParadigm, IEquatable<RussianDeclensionForms>
+    [DataContract]
+    internal class RussianDeclensionForms : IParadigm, IEquatable<RussianDeclensionForms>
     {
-        [JsonProperty(PropertyName = "И")]
+        [DataMember(Name = "И")]
         public string Nominative { get; set; }
 
-        [JsonProperty(PropertyName = "Р")]
+        [DataMember(Name = "Р")]
         public string Genitive { get; set; }
 
-        [JsonProperty("Д")]
+        [DataMember(Name = "Д")]
         public string Dative { get; set; }
 
-        [JsonProperty("В")]
+        [DataMember(Name = "В")]
         public string Accusative { get; set; }
 
-        [JsonProperty("Т")]
+        [DataMember(Name = "Т")]
         public string Instrumental { get; set; }
 
-        [JsonProperty("П")]
+        [DataMember(Name = "П")]
         public string Prepositional { get; set; }
 
-        [JsonProperty("П-о")]
+        [DataMember(Name = "П-о")]
         public string Locative { get; set; }
-
 
         [SuppressMessage("ReSharper", "StyleCop.SA1126")]
         public static bool operator ==(RussianDeclensionForms left, RussianDeclensionForms right)
@@ -49,13 +47,11 @@
         {
             if (ReferenceEquals(null, other)) return false;
             if (ReferenceEquals(this, other)) return true;
-            return string.Equals(this.Nominative, other.Nominative) &&
-                string.Equals(this.Genitive, other.Genitive) &&
-                string.Equals(this.Dative, other.Dative) &&
-                string.Equals(this.Accusative, other.Accusative) &&
-                string.Equals(this.Instrumental, other.Instrumental) &&
-                string.Equals(this.Prepositional, other.Prepositional) &&
-                string.Equals(this.Locative, other.Locative);
+            return string.Equals(this.Nominative, other.Nominative) && string.Equals(this.Genitive, other.Genitive)
+                   && string.Equals(this.Dative, other.Dative) && string.Equals(this.Accusative, other.Accusative)
+                   && string.Equals(this.Instrumental, other.Instrumental)
+                   && string.Equals(this.Prepositional, other.Prepositional)
+                   && string.Equals(this.Locative, other.Locative);
         }
 
         [SuppressMessage("ReSharper", "StyleCop.SA1503")]
@@ -75,7 +71,7 @@
         {
             unchecked
             {
-                var hashCode = (this.Nominative != null ? this.Nominative.GetHashCode() : 0);
+                var hashCode = this.Nominative != null ? this.Nominative.GetHashCode() : 0;
                 hashCode = (hashCode * 397) ^ (this.Genitive != null ? this.Genitive.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (this.Dative != null ? this.Dative.GetHashCode() : 0);
                 hashCode = (hashCode * 397) ^ (this.Accusative != null ? this.Accusative.GetHashCode() : 0);

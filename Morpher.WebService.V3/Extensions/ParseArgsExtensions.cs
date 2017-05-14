@@ -4,7 +4,7 @@
 
     using Morpher.WebService.V3.Models;
 
-    public static class ParseArgsExtensions
+    internal static class ParseArgsExtensions
     {
         public static DeclensionFlags ToWebServiceFlags(this Morpher.Russian.ParseArgs parseArgs)
         {

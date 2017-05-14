@@ -5,36 +5,34 @@
     using Morpher.Ukrainian;
     using Morpher.WebService.V3.Models;
 
-    public class Parse : IParse
+    internal class Parse : Paradigm, IParse
     {
         private readonly UkrainianDeclensionResult declensionResult;
 
-        public Parse(UkrainianDeclensionResult declensionResult, string lemma)
+        private readonly bool paid;
+
+        public Parse(UkrainianDeclensionResult declensionResult, string lemma, bool paid)
+            : base(lemma)
         {
             this.declensionResult = declensionResult;
+            this.paid = paid;
         }
 
         public Gender Gender
         {
-            // TODO: Do this!
             get
             {
-                throw new NotImplementedException();
+                switch (this.declensionResult.Gender)
+                {
+                    case "Чоловічий": return Gender.Masculine;
+                    case "Жіночий": return Gender.Feminine;
+                    case "Середній": return Gender.Neuter;
+                    case null: return this.paid ? Gender.Plural : null;
+                    default: throw new ApplicationException($"Веб-сервис вернул неожиданное значение рода: {this.declensionResult.Gender}");
+                }
             }
         }
 
-        public string Nominative => this.declensionResult.Nominative;
-
-        public string Genitive => this.declensionResult.Genitive;
-
-        public string Dative => this.declensionResult.Dative;
-
-        public string Accusative => this.declensionResult.Accusative;
-
-        public string Instrumental => this.declensionResult.Instrumental;
-
-        public string Prepositional => this.declensionResult.Prepositional;
-
-        public string Vocative => this.declensionResult.Vocative;
+        protected override IParadigm UkrainianParadigm => this.declensionResult;
     }
 }

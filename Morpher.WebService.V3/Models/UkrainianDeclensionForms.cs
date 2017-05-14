@@ -2,32 +2,32 @@
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
+    using System.Runtime.Serialization;
 
-    using Morpher.WebService.V3.Models.Interfaces;
+    using Morpher.Ukrainian;
 
-    using Newtonsoft.Json;
-
-    public class UkrainianDeclensionForms : IUkrainianParadigm, IEquatable<UkrainianDeclensionForms>
+    [DataContract]
+    internal class UkrainianDeclensionForms : IParadigm, IEquatable<UkrainianDeclensionForms>
     {
-        [JsonProperty("Н")]
+        [DataMember(Name = "Н")]
         public string Nominative { get; set; }
 
-        [JsonProperty("Р")]
+        [DataMember(Name = "Р")]
         public string Genitive { get; set; }
 
-        [JsonProperty("Д")]
+        [DataMember(Name = "Д")]
         public string Dative { get; set; }
 
-        [JsonProperty("З")]
+        [DataMember(Name = "З")]
         public string Accusative { get; set; }
 
-        [JsonProperty("О")]
+        [DataMember(Name = "О")]
         public string Instrumental { get; set; }
 
-        [JsonProperty("М")]
+        [DataMember(Name = "М")]
         public string Prepositional { get; set; }
 
-        [JsonProperty("К")]
+        [DataMember(Name = "К")]
         public string Vocative { get; set; }
 
         [SuppressMessage("ReSharper", "StyleCop.SA1126")]

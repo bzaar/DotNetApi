@@ -8,8 +8,7 @@
 
     using Morpher.WebService.V3.Extensions;
     using Morpher.WebService.V3.Models;
-
-    using Newtonsoft.Json;
+    using Morpher.WebService.V3.Models.Exceptions;
 
     public class Client :
         Morpher.Russian.IDeclension,
@@ -51,15 +50,26 @@
                     client.QueryString.Add("token", this.token);
                 }
 
+                if (args != null)
+                {
+                    client.QueryString.Add("flags", ((int)args.ToWebServiceFlags()).ToString());
+                }
+
                 client.QueryString.Add("format", "json");
                 client.QueryString.Add("s", s);
 
-                var responseString = client.DownloadString($"{this.url}/russian/declension");
+                object result = client.GetObject(typeof(RussianDeclensionResult), $"{this.url}/russian/declension");
 
-                RussianDeclensionResult declensionResult =
-                    JsonConvert.DeserializeObject<RussianDeclensionResult>(responseString);
-
-                return new Russian.Parse(declensionResult, s);
+                var declensionResult = result as RussianDeclensionResult;
+                if (declensionResult != null)
+                {
+                    return new Russian.Parse(declensionResult, s, this.token != null);
+                }
+                else
+                {
+                    ServiceErrorMessage errorMessage = (ServiceErrorMessage)result;
+                    throw new MorpherWebServiceException(errorMessage.Message, errorMessage.Code);
+                }
             }
         }
 
@@ -72,15 +82,27 @@
                     client.QueryString.Add("token", this.token);
                 }
 
+                if (args != null)
+                {
+                    client.QueryString.Add("flags", ((int)args.ToWebServiceFlags()).ToString());
+                }
+
+
                 client.QueryString.Add("format", "json");
                 client.QueryString.Add("s", s);
 
-                var responseString = client.DownloadString($"{this.url}/ukrainian/declension");
+                object result = client.GetObject(typeof(UkrainianDeclensionResult), $"{this.url}/ukrainian/declension");
 
-                UkrainianDeclensionResult declensionResult =
-                    JsonConvert.DeserializeObject<UkrainianDeclensionResult>(responseString);
-
-                return new Ukrainian.Parse(declensionResult, s);
+                var declensionResult = result as UkrainianDeclensionResult;
+                if (declensionResult != null)
+                {
+                    return new Ukrainian.Parse(declensionResult, s, this.token != null);
+                }
+                else
+                {
+                    ServiceErrorMessage errorMessage = (ServiceErrorMessage)result;
+                    throw new MorpherWebServiceException(errorMessage.Message, errorMessage.Code);
+                }
             }
         }
 
@@ -97,13 +119,19 @@
                 client.QueryString.Add("n", n.ToString(CultureInfo.InvariantCulture));
                 client.QueryString.Add("unit", unit);
 
-                var responseString = client.DownloadString($"{this.url}/russian/spell");
+                object result = client.GetObject(typeof(RussianNumberSpelling), $"{this.url}/russian/spell");
 
-                RussianNumberSpelling numberSpelling =
-                    JsonConvert.DeserializeObject<RussianNumberSpelling>(responseString);
-
-                unit = new Russian.UnitParadigm(numberSpelling.UnitDeclension).Get(@case);
-                return new Russian.UnitParadigm(numberSpelling.NumberDeclension).Get(@case);
+                RussianNumberSpelling numberSpelling = result as RussianNumberSpelling;
+                if (numberSpelling != null)
+                {
+                    unit = new Russian.UnitParadigm(numberSpelling.UnitDeclension).Get(@case);
+                    return new Russian.UnitParadigm(numberSpelling.NumberDeclension).Get(@case);
+                }
+                else
+                {
+                    ServiceErrorMessage errorMessage = (ServiceErrorMessage)result;
+                    throw new MorpherWebServiceException(errorMessage.Message, errorMessage.Code);
+                }
             }
         }
 
@@ -122,13 +150,19 @@
                 client.QueryString.Add("n", n.ToString(CultureInfo.InvariantCulture));
                 client.QueryString.Add("unit", unit);
 
-                var responseString = client.DownloadString($"{this.url}/ukrainian/spell");
+                object result = client.GetObject(typeof(UkrainianNumberSpelling), $"{this.url}/ukrainian/spell");
 
-                UkrainianNumberSpelling numberSpelling =
-                    JsonConvert.DeserializeObject<UkrainianNumberSpelling>(responseString);
-
-                unit = new Ukrainian.Paradigm(numberSpelling.UnitDeclension).Get(@case);
-                return new Ukrainian.Paradigm(numberSpelling.NumberDeclension).Get(@case);
+                UkrainianNumberSpelling numberSpelling = result as UkrainianNumberSpelling;
+                if (numberSpelling != null)
+                {
+                    unit = new Ukrainian.UnitParadigm(numberSpelling.UnitDeclension).Get(@case);
+                    return new Ukrainian.UnitParadigm(numberSpelling.NumberDeclension).Get(@case);
+                }
+                else
+                {
+                    ServiceErrorMessage errorMessage = (ServiceErrorMessage)result;
+                    throw new MorpherWebServiceException(errorMessage.Message, errorMessage.Code);
+                }
             }
         }
     }

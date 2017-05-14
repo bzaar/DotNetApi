@@ -30,12 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net40\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -43,14 +40,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extensions\ParseArgsExtensions.cs" />
+    <Compile Include="Extensions\WebClientExtensions.cs" />
+    <Compile Include="Extensions\WebExceptionExtensions.cs" />
+    <Compile Include="Models\DeclensionFlags.cs" />
+    <Compile Include="Models\Exceptions\MorpherWebServiceException.cs" />
+    <Compile Include="Models\ServiceErrorMessage.cs" />
     <Compile Include="Parameters.cs" />
     <Compile Include="Client.cs" />
     <Compile Include="Extensions\XmlNodeExtensions.cs" />
     <Compile Include="Models\AdjectiveGenders.cs" />
     <Compile Include="Models\FullName.cs" />
-    <Compile Include="Models\Interfaces\IRussianParadigm.cs" />
-    <Compile Include="Models\Interfaces\ISlavicParadigm.cs" />
-    <Compile Include="Models\Interfaces\IUkrainianParadigm.cs" />
     <Compile Include="Models\RussianDeclensionForms.cs" />
     <Compile Include="Models\RussianDeclensionResult.cs" />
     <Compile Include="Models\RussianNumberSpelling.cs" />
@@ -63,6 +63,7 @@
     <Compile Include="Russian\UnitParadigm.cs" />
     <Compile Include="Ukrainian\Paradigm.cs" />
     <Compile Include="Ukrainian\Parse.cs" />
+    <Compile Include="Ukrainian\UnitParadigm.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Morpher.API\Morpher.API.csproj">
@@ -70,9 +71,8 @@
       <Name>Morpher.API</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <None Include="packages.config" />
+    <Folder Include="Models\Interfaces\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

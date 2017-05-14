@@ -1,16 +1,19 @@
 ﻿namespace Morpher.WebService.V3.Models
 {
-    using Newtonsoft.Json;
+    using System.Runtime.Serialization;
+    using System.Xml.Serialization;
 
-    public class AdjectiveGenders
+    [DataContract]
+    internal class AdjectiveGenders
     {
-        [JsonProperty("feminine")]
+        [DataMember(Name = "feminine")]
         public string Feminie { get; set; }
 
-        [JsonProperty("neuter")]
+        [DataMember(Name = "neuter")]
         public string Neuter { get; set; }
 
-        [JsonProperty("plural")]
+        [XmlElement("plural")]
+        [DataMember(Name = "plural")]
         public string Plural { get; set; }
     }
 }

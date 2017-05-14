@@ -1,16 +1,17 @@
 ﻿namespace Morpher.WebService.V3.Models
 {
-    using Newtonsoft.Json;
+    using System.Runtime.Serialization;
 
-    public class FullName
+    [DataContract]
+    internal class FullName
     {
-        [JsonProperty("Ф")]
+        [DataMember(Name = "Ф")]
         public string Surname { get; set; }
 
-        [JsonProperty("И")]
+        [DataMember(Name = "И")]
         public string Name { get; set; }
 
-        [JsonProperty("О")]
+        [DataMember(Name = "О")]
         public string Pantronymic { get; set; }
     }
 }

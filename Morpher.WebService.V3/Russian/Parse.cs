@@ -4,16 +4,18 @@
 
     using Morpher.Russian;
     using Morpher.WebService.V3.Models;
-    using Morpher.WebService.V3.Models.Interfaces;
 
-    public class Parse : Paradigm, IParse
+    internal class Parse : Paradigm, IParse
     {
         private readonly RussianDeclensionResult declensionResult;
 
-        public Parse(RussianDeclensionResult declensionResult, string lemma)
+        private readonly bool paid;
+
+        public Parse(RussianDeclensionResult declensionResult, string lemma, bool paid)
             : base(lemma)
         {
             this.declensionResult = declensionResult;
+            this.paid = paid;
         }
 
         public IParadigm Plural => this.declensionResult.Plural;
@@ -26,8 +28,8 @@
                 {
                     case "Мужской": return Gender.Masculine;
                     case "Женский": return Gender.Feminine;
-                    case "Средний": return Gender.Plural;
-                    case "": return Gender.Plural;
+                    case "Средний": return Gender.Neuter;
+                    case null: return this.paid ? Gender.Plural : null;
                     default: throw new ApplicationException($"Веб-сервис вернул неожиданное значение рода: {this.declensionResult.Gender}");
                 }
             }
@@ -46,6 +48,6 @@
             }
         }
 
-        protected override IRussianParadigm RussianParadigm => this.declensionResult;
+        protected override IParadigm RussianParadigm => this.declensionResult;
     }
 }

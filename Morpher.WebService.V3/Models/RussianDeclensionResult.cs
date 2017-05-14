@@ -1,25 +1,26 @@
 ﻿namespace Morpher.WebService.V3.Models
 {
-    using Newtonsoft.Json;
+    using System.Runtime.Serialization;
 
-    public class RussianDeclensionResult : RussianDeclensionForms
+    [DataContract(Name = "xml", Namespace = "http://schemas.datacontract.org/2004/07/Morpher.WebApi.Models")]
+    internal class RussianDeclensionResult : RussianDeclensionForms
     {
-        [JsonProperty("род")]
+        [DataMember(Name = "род")]
         public string Gender { get; set; }
 
-        [JsonProperty("множественное")]
+        [DataMember(Name = "множественное")]
         public RussianDeclensionForms Plural { get; set; }
 
-        [JsonProperty("ФИО")]
+        [DataMember(Name = "ФИО")]
         public FullName FullName { get; set; }
 
-        [JsonProperty("где")]
+        [DataMember(Name = "где")]
         public string Where { get; set; }
 
-        [JsonProperty("куда")]
+        [DataMember(Name = "куда")]
         public string To { get; set; }
 
-        [JsonProperty("откуда")]
+        [DataMember(Name = "откуда")]
         public string From { get; set; }
     }
 }

@@ -1,10 +1,11 @@
 ﻿namespace Morpher.WebService.V3.Models
 {
-    using Newtonsoft.Json;
+    using System.Runtime.Serialization;
 
-    public class UkrainianDeclensionResult : UkrainianDeclensionForms
+    [DataContract(Name = "GetXmlUkrResult", Namespace = "http://schemas.datacontract.org/2004/07/Morpher.WebApi.Models")]
+    internal class UkrainianDeclensionResult : UkrainianDeclensionForms
     {
-        [JsonProperty("рід")]
+        [DataMember(Name = "рід")]
         public string Gender { get; set; }
     }
 }

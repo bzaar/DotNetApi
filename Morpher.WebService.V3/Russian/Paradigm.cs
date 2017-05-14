@@ -1,9 +1,8 @@
 ﻿namespace Morpher.WebService.V3.Russian
 {
     using Morpher.Russian;
-    using Morpher.WebService.V3.Models.Interfaces;
 
-    public abstract class Paradigm : IParadigm
+    internal abstract class Paradigm : IParadigm
     {
         protected Paradigm(string lemma)
         {
@@ -24,6 +23,6 @@
 
         public string Locative => this.RussianParadigm.Locative;
 
-        protected abstract IRussianParadigm RussianParadigm { get; }
+        protected abstract IParadigm RussianParadigm { get; }
     }
 }

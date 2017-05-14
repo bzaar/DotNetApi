@@ -1,13 +1,14 @@
 ﻿namespace Morpher.WebService.V3.Models
 {
-    using Newtonsoft.Json;
+    using System.Runtime.Serialization;
 
-    public class RussianNumberSpelling
+    [DataContract(Name = "PropisResult", Namespace = "http://schemas.datacontract.org/2004/07/Morpher.WebApi.Models")]
+    internal class RussianNumberSpelling
     {
-        [JsonProperty("n")]
+        [DataMember(Name = "n")]
         public RussianDeclensionForms NumberDeclension { get; set; }
 
-        [JsonProperty("unit")]
+        [DataMember(Name = "unit")]
         public RussianDeclensionForms UnitDeclension { get; set; }
     }
 }

@@ -3,7 +3,7 @@
     using System;
     using System.Xml;
 
-    public static class XmlNodeExtensions
+    internal static class XmlNodeExtensions
     {
         public static string GetAttributeOrNull(this XmlNode parameters, string name)
         {

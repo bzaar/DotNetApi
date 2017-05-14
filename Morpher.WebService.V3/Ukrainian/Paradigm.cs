@@ -1,30 +1,28 @@
 ﻿namespace Morpher.WebService.V3.Ukrainian
 {
     using Morpher.Ukrainian;
-    using Morpher.WebService.V3.Models;
-    using Morpher.WebService.V3.Models.Interfaces;
 
-    public class Paradigm : IParadigm
+    internal abstract class Paradigm : IParadigm
     {
-        private readonly IUkrainianParadigm ukrainianParadigm;
-
-        public Paradigm(IUkrainianParadigm ukrainianParadigm)
+        protected Paradigm(string lemma)
         {
-            this.ukrainianParadigm = ukrainianParadigm;
+            this.Nominative = lemma;
         }
 
-        public string Nominative => this.ukrainianParadigm.Nominative;
+        public string Nominative { get; }
 
-        public string Genitive => this.ukrainianParadigm.Genitive;
+        public string Genitive => this.UkrainianParadigm.Genitive;
 
-        public string Dative => this.ukrainianParadigm.Dative;
+        public string Dative => this.UkrainianParadigm.Dative;
 
-        public string Accusative => this.ukrainianParadigm.Accusative;
+        public string Accusative => this.UkrainianParadigm.Accusative;
 
-        public string Instrumental => this.ukrainianParadigm.Instrumental;
+        public string Instrumental => this.UkrainianParadigm.Instrumental;
 
-        public string Prepositional => this.ukrainianParadigm.Prepositional;
+        public string Prepositional => this.UkrainianParadigm.Prepositional;
 
-        public string Vocative => this.ukrainianParadigm.Vocative;
+        public string Vocative => this.UkrainianParadigm.Vocative;
+
+        protected abstract IParadigm UkrainianParadigm { get; }
     }
 }
