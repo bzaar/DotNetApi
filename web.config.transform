@@ -7,9 +7,9 @@
   
   <morpher>
     <objects>
-      <add name="WebServiceClient" type="Morpher.WebService.V2.Client, Morpher.WebService.V2">
-        <!-- Не забудьте сменить логин и пароль на свои: http://morpher.ru/Register.aspx -->
-        <parameters url="http://api.morpher.ru/WebService.asmx" username="vasily_p" password="secret"/>
+      <add name="WebServiceClient" type="Morpher.WebService.V3.Client, Morpher.WebService.V3">
+        <!-- Не забудьте сменить token на свой: http://morpher.ru/Register.aspx -->
+        <parameters url="https://ws3.morpher.ru" token="a8dab5fe-7a47-4c17-84ea-46facb7d19fe"/>
       </add>
     </objects>
     <interfaces>

@@ -20,6 +20,7 @@
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
     <OldToolsVersion>4.0</OldToolsVersion>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -29,6 +30,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -37,10 +39,10 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Core" />
     <Reference Include="System.Web" />
   </ItemGroup>
   <ItemGroup>
@@ -95,13 +97,13 @@
       <Project>{573DFC63-9C99-481E-862F-7A6EFC0BF1EE}</Project>
       <Name>Morpher.Generic</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Morpher.WebService.V2\Morpher.WebService.V2.csproj">
-      <Project>{048BF415-66D0-452C-AFAE-1FEBB8D1B29B}</Project>
-      <Name>Morpher.WebService.V2</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Morpher.API\Morpher.API.csproj">
       <Project>{CD26D20A-D6AE-42E7-AC4B-29B0833ED2D4}</Project>
       <Name>Morpher.API</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Morpher.WebService.V3\Morpher.WebService.V3.csproj">
+      <Project>{86e0e060-256e-4887-9809-88adc4637a41}</Project>
+      <Name>Morpher.WebService.V3</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

@@ -25,6 +25,7 @@
     <DocumentationFile>bin\$(TargetFrameworkVersion)\Debug\Morpher.API.xml</DocumentationFile>
     <RegisterForComInterop>false</RegisterForComInterop>
     <NoWarn>1591</NoWarn>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -36,6 +37,7 @@
     <RegisterForComInterop>false</RegisterForComInterop>
     <DocumentationFile>bin\$(TargetFrameworkVersion)\Release\Morpher.API.xml</DocumentationFile>
     <NoWarn>1591</NoWarn>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>
