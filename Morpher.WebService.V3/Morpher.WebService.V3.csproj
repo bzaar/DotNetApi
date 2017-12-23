@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net40</TargetFramework>
+    <RootNamespace>Morpher.WebService.V3</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Morpher.WebService.V3.Client" Version="2.*" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Morpher.API\Morpher.API.csproj" />
+  </ItemGroup>
+</Project>
